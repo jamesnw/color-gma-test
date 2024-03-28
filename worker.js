@@ -80,7 +80,7 @@ const deltas = (original, mapped) => {
     // Use absolute because we are interested in magnitude, not direction
     deltas[c] = Math.abs(delta);
   });
-  deltas.eok = original.deltaE(mapped, { method: "2000" });
+  deltas.delta2000 = original.deltaE(mapped, { method: "2000" });
   return deltas;
 }
 
@@ -108,14 +108,14 @@ const aggregate = (results, colorData, index) => {
     res.count++;
     const clipDelta = clipDeltas[0];
     const mapDelta = mapDeltas[0];
-    ["L", "C", "H", "eok"].forEach(delta => {
+    ["L", "C", "H", "delta2000"].forEach(delta => {
       res.clip[delta] = runningAverage(res.clip[delta], clipDelta[delta], res.count)
     });
-    ["L", "C", "H", "eok"].forEach(delta => {
+    ["L", "C", "H", "delta2000"].forEach(delta => {
       res.map[delta] = runningAverage(res.map[delta], mapDelta[delta], res.count)
     });
-    res.clip.worst = clipDelta.eok > (res.clip.worst?.delta || 0) ? { delta: clipDelta.eok, color: color.toString() } : res.clip.worst;
-    res.map.worst = mapDelta.eok > (res.map.worst?.delta || 0) ? { delta: mapDelta.eok, color: color.toString() } : res.map.worst;
+    res.clip.worst = clipDelta.delta2000 > (res.clip.worst?.delta || 0) ? { delta: clipDelta.delta2000, color: color.toString() } : res.clip.worst;
+    res.map.worst = mapDelta.delta2000 > (res.map.worst?.delta || 0) ? { delta: mapDelta.delta2000, color: color.toString() } : res.map.worst;
     results.inP3OutSrgb = res;
   }
   if (!gamuts[0] && gamuts[2]) {
@@ -123,14 +123,14 @@ const aggregate = (results, colorData, index) => {
     res.count++;
     const clipDelta = clipDeltas[0];
     const mapDelta = mapDeltas[0];
-    ["L", "C", "H", "eok"].forEach(delta => {
+    ["L", "C", "H", "delta2000"].forEach(delta => {
       res.clip[delta] = runningAverage(res.clip[delta], clipDelta[delta], res.count)
     });
-    ["L", "C", "H", "eok"].forEach(delta => {
+    ["L", "C", "H", "delta2000"].forEach(delta => {
       res.map[delta] = runningAverage(res.map[delta], mapDelta[delta], res.count)
     });
-    res.clip.worst = clipDelta.eok > (res.clip.worst?.delta || 0) ? { delta: clipDelta.eok, color: color.toString() } : res.clip.worst;
-    res.map.worst = mapDelta.eok > (res.map.worst?.delta || 0) ? { delta: mapDelta.eok, color: color.toString() } : res.map.worst;
+    res.clip.worst = clipDelta.delta2000 > (res.clip.worst?.delta || 0) ? { delta: clipDelta.delta2000, color: color.toString() } : res.clip.worst;
+    res.map.worst = mapDelta.delta2000 > (res.map.worst?.delta || 0) ? { delta: mapDelta.delta2000, color: color.toString() } : res.map.worst;
     results.inRec2020OutSrgb = res;
   }
   if (!gamuts[1] && gamuts[2]) {
@@ -138,14 +138,14 @@ const aggregate = (results, colorData, index) => {
     res.count++;
     const clipDelta = clipDeltas[1];
     const mapDelta = mapDeltas[1];
-    ["L", "C", "H", "eok"].forEach(delta => {
+    ["L", "C", "H", "delta2000"].forEach(delta => {
       res.clip[delta] = runningAverage(res.clip[delta], clipDelta[delta], res.count)
     });
-    ["L", "C", "H", "eok"].forEach(delta => {
+    ["L", "C", "H", "delta2000"].forEach(delta => {
       res.map[delta] = runningAverage(res.map[delta], mapDelta[delta], res.count)
     });
-    res.clip.worst = clipDelta.eok > (res.clip.worst?.delta || 0) ? { delta: clipDelta.eok, color: color.toString() } : res.clip.worst;
-    res.map.worst = mapDelta.eok > (res.map.worst?.delta || 0) ? { delta: mapDelta.eok, color: color.toString() } : res.map.worst;
+    res.clip.worst = clipDelta.delta2000 > (res.clip.worst?.delta || 0) ? { delta: clipDelta.delta2000, color: color.toString() } : res.clip.worst;
+    res.map.worst = mapDelta.delta2000 > (res.map.worst?.delta || 0) ? { delta: mapDelta.delta2000, color: color.toString() } : res.map.worst;
     results.inRec2020OutP3 = res;
   }
   if (!gamuts[2]) {
@@ -153,14 +153,14 @@ const aggregate = (results, colorData, index) => {
     res.count++;
     const clipDelta = clipDeltas[1];
     const mapDelta = mapDeltas[1];
-    ["L", "C", "H", "eok"].forEach(delta => {
+    ["L", "C", "H", "delta2000"].forEach(delta => {
       res.clip[delta] = runningAverage(res.clip[delta], clipDelta[delta], res.count)
     });
-    ["L", "C", "H", "eok"].forEach(delta => {
+    ["L", "C", "H", "delta2000"].forEach(delta => {
       res.map[delta] = runningAverage(res.map[delta], mapDelta[delta], res.count)
     });
-    res.clip.worst = clipDelta.eok > (res.clip.worst?.delta || 0) ? { delta: clipDelta.eok, color: color.toString() } : res.clip.worst;
-    res.map.worst = mapDelta.eok > (res.map.worst?.delta || 0) ? { delta: mapDelta.eok, color: color.toString() } : res.map.worst;
+    res.clip.worst = clipDelta.delta2000 > (res.clip.worst?.delta || 0) ? { delta: clipDelta.delta2000, color: color.toString() } : res.clip.worst;
+    res.map.worst = mapDelta.delta2000 > (res.map.worst?.delta || 0) ? { delta: mapDelta.delta2000, color: color.toString() } : res.map.worst;
     results.outRec2020 = res;
   }
   return results;

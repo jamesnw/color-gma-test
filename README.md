@@ -16,7 +16,7 @@ the results of clipping and mapping. Results are split into 4 segments-
 and mapped color in the `oklch` space, and give a sense of how much on average a
 certain channel is shifted, but not a direction.
 
-`eok` is the average `delta2000` between the original and mapped color.
+`e2000` is the average `delta2000` between the original and mapped color.
 
 `worst` is the color that has the greatest `delta2000` value for the tier.
 
